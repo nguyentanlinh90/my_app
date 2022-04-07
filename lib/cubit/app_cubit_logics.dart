@@ -5,6 +5,7 @@ import 'package:my_app/cubit/app_cubit_states.dart';
 import 'package:my_app/cubit/app_cubits.dart';
 import 'package:my_app/pages/detail_page.dart';
 import 'package:my_app/pages/home_page.dart';
+import 'package:my_app/pages/price_page.dart';
 import 'package:my_app/pages/welcome_page.dart';
 
 import '../pages/navpages/main_page.dart';
@@ -23,7 +24,8 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
       body: BlocBuilder<AppCubits, CubitStates>(
         builder: (context, state) {
           if (state is WelcomeState) {
-            return WelcomePage();
+            // return WelcomePage();
+            return PricePage();
           }
           if (state is LoadingState) {
             return Center(
