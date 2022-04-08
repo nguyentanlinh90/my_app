@@ -13,6 +13,7 @@ class _HomeSleepPageState extends State<HomeSleepPage> {
   @override
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(context).orientation;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kColorPrimary,
       body: SafeArea(
@@ -22,12 +23,35 @@ class _HomeSleepPageState extends State<HomeSleepPage> {
                   getStartedBackground(),
                   FractionallySizedBox(
                       heightFactor: 0.4, child: getStartedHeader()),
+                  Align(
+                      alignment: const Alignment(0.0, 0.8),
+                      child: GetStartedButton(
+                        fixedSize: MaterialStateProperty.all(
+                            Size(size.width * 0.9, size.height * 0.065)),
+                        textStyle: MaterialStateProperty.all(
+                            primaryFont.medium(size.height * 0.015)),
+                      ))
                 ],
               )
             : Row(
                 children: [
-                  Expanded(child: getStartedHeader()),
-                  Expanded(child: getStartedBackground()),
+                  Expanded(
+                      child: Align(
+                    alignment: Alignment.topCenter,
+                    child: FractionallySizedBox(
+                        heightFactor: 0.8, child: getStartedHeader()),
+                  )),
+                  Expanded(
+                      child: Stack(children: [
+                    getStartedBackground(),
+                    Align(
+                      alignment: const Alignment(0.0, 0.8),
+                      child: GetStartedButton(
+                        fixedSize: MaterialStateProperty.all(
+                            Size(size.width * 0.4, size.height * 0.065)),
+                      ),
+                    )
+                  ])),
                 ],
               ),
       ),
@@ -35,13 +59,16 @@ class _HomeSleepPageState extends State<HomeSleepPage> {
   }
 
   Align getStartedBackground() {
+    final orientation = MediaQuery.of(context).orientation;
     return Align(
         alignment: Alignment.bottomCenter,
         child: FractionallySizedBox(
-            heightFactor: 0.6,
+            heightFactor: orientation == Orientation.portrait ? 0.6 : 0.9,
             widthFactor: 1,
             child: FittedBox(
                 fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+                clipBehavior: Clip.antiAlias,
                 child: SvgPicture.asset('assets/images/bg_get_started.svg'))));
   }
 
@@ -99,6 +126,30 @@ class _HomeSleepPageState extends State<HomeSleepPage> {
           ),
         )
       ],
+    );
+  }
+}
+
+class GetStartedButton extends StatelessWidget {
+  const GetStartedButton({Key? key, this.fixedSize, this.textStyle})
+      : super(key: key);
+
+  final MaterialStateProperty<Size>? fixedSize;
+  final MaterialStateProperty<TextStyle>? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      child: const Text('GET STARTED'),
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(kColorLightGrey),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(38))),
+          elevation: MaterialStateProperty.all(0),
+          fixedSize: fixedSize,
+          foregroundColor: MaterialStateProperty.all(Colors.grey),
+          textStyle: textStyle),
     );
   }
 }
