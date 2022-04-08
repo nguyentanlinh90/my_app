@@ -18,14 +18,14 @@ List products = [
   ProductInfo("Prd 5", 1000),
 ];
 
-class PricePage extends StatefulWidget {
-  const PricePage({Key? key}) : super(key: key);
+class HomePricePage extends StatefulWidget {
+  const HomePricePage({Key? key}) : super(key: key);
 
   @override
-  State<PricePage> createState() => _PricePageState();
+  State<HomePricePage> createState() => _HomePricePageState();
 }
 
-class _PricePageState extends State<PricePage> {
+class _HomePricePageState extends State<HomePricePage> {
   int _currentProductIndex = 0;
   int? _inputtedPrice;
   String _result = '';
@@ -50,9 +50,9 @@ class _PricePageState extends State<PricePage> {
                   onPressed: () {
                     setState(() {
                       _result =
-                          _inputtedPrice == products[_currentProductIndex].price
-                              ? 'pass'
-                              : 'fail';
+                      _inputtedPrice == products[_currentProductIndex].price
+                          ? 'pass'
+                          : 'fail';
                     });
                   },
                   child: const AppText(

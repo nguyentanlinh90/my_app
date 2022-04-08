@@ -9,6 +9,12 @@ class InitialState extends CubitStates {
   List<Object> get props => [];
 }
 
+class WelcomeState extends CubitStates {
+  @override
+  // TODO: implement props
+  List<Object> get props => [];
+}
+
 class LoadingState extends CubitStates {
   @override
   // TODO: implement props
@@ -17,7 +23,9 @@ class LoadingState extends CubitStates {
 
 class LoadedState extends CubitStates {
   LoadedState(this.places);
+
   final List<DataModel> places;
+
   @override
   // TODO: implement props
   List<Object> get props => [places];
@@ -25,14 +33,10 @@ class LoadedState extends CubitStates {
 
 class DetailState extends CubitStates {
   DetailState(this.place);
+
   final DataModel place;
+
   @override
   // TODO: implement props
   List<Object> get props => [place];
-}
-
-class WelcomeState extends CubitStates {
-  @override
-  // TODO: implement props
-  List<Object> get props => [];
 }

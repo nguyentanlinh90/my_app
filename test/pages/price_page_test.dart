@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_app/pages/price_page.dart';
+import 'package:my_app/pj_price/pages/home_price_page.dart';
 
 void main() {
   group('Price test', () {
@@ -30,7 +30,7 @@ void main() {
     testWidgets('Click Next to interate over the product list',
         (WidgetTester tester) async {
       await tester.pumpWidget(const MaterialApp(
-        home: PricePage(),
+        home: HomePricePage(),
       ));
 
       expect(nextBtn(), findsNothing);
